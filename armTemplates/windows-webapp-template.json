@@ -13,7 +13,7 @@
         },
         "sku": {
             "type": "string",
-            "defaultValue": "Standard S1"
+            "defaultValue": "Free F1"
         }
     },
     "resources": [
@@ -63,8 +63,8 @@
         {
             "type": "Microsoft.Web/serverfarms",
             "sku": {
-                "Tier": "[first(skip(split(parameters('sku'), ' '), 1))]",
-                "Name": "[first(split(parameters('sku'), ' '))]"
+                "tier": "[first(skip(split(parameters('sku'), ' '), 1))]",
+                "name": "[first(split(parameters('sku'), ' '))]"
             },
             "name": "[parameters('hostingPlanName')]",
             "apiVersion": "2015-08-01",
@@ -73,7 +73,7 @@
                 "name": "[parameters('hostingPlanName')]",
                 "workerSizeId": "0",
                 "reserved": false,
-                "numberOfWorkers": "1",
+                "numberOfWorkers": 1,
                 "hostingEnvironment": ""
             }
         },
