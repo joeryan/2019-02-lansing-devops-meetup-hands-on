@@ -1,0 +1,65 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+  demands: npm
+
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node version'
+  inputs:
+    versionSpec: 8.4
+
+- task: Npm@1
+  displayName: 'Install application dependencies'
+  inputs:
+    command: custom
+    workingDir: Application
+    verbose: false
+    customCommand: ci
+
+- task: Npm@1
+  displayName: 'Install test dependencies'
+  inputs:
+    command: custom
+    workingDir: Tests
+    verbose: false
+    customCommand: ci
+
+- task: Npm@1
+  displayName: 'Run unit tests'
+  inputs:
+    command: custom
+    workingDir: Tests
+    verbose: false
+    customCommand: 'run unittest:report'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive application'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/Application'
+    includeRootFolder: false
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive tests'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/Tests'
+    includeRootFolder: false
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Tests$(Build.BuildId).zip'
+
+- task: CopyFiles@2
+  displayName: 'Copy ARM templates'
+  inputs:
+    SourceFolder: armTemplates
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: CopyFiles@2
+  displayName: 'Copy scripts'
+  inputs:
+    SourceFolder: scripts
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
