@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "name": "Brendon",
+      "title": "El Jefe",
+      "isAdmin": true
+    },
+    {
+      "name": "Kevin",
+      "title": "Segundo",
+      "isAdmin": true
+    },
+    {
+      "name": "John",
+      "title": "Statistician",
+      "isAdmin": false
+    },
+    {
+      "name": "Conner",
+      "title": "Maintenance",
+      "isAdmin": false
+    }
+  ]
+}
