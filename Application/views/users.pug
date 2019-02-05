@@ -1,0 +1,17 @@
+﻿extends layout
+
+mixin userCard(user)
+  div.card(style="width: 80%;")
+    div.card-body
+      h2.card-title(style="margin-bottom: 5px;")= user.name
+      h3.card-subtitle.mb-2.text-muted(style="margin-top: 0;")= `${user.title + (user.isAdmin ? ' (admin)' : '') }`
+
+block content
+  .main-container
+    .content
+        h1 #{envName} #{title}
+        ul
+          each user in users
+            +userCard(user)
+          else
+            li There are no users
