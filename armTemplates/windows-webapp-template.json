@@ -10,7 +10,7 @@
     },
     "sku": {
       "type": "string",
-      "defaultValue": "Free F1"
+      "defaultValue": "F1 Free"
     },
     "environmentName": {
       "type": "string",
