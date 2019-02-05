@@ -29,7 +29,7 @@ describe('sampleFunctionalTests', function () {
 
   it('Assert page title', (done) => {
     driver.get(process.env['webAppUrl']).then(() => {
-      return driver.wait(until.titleIs('Express - Node.js Express Application'), 2000);
+      return driver.wait(until.titleIs('Welcome - Lansing DevOps Meetup'), 2000);
     })
       .then(() => done())
       .catch((err) => {
