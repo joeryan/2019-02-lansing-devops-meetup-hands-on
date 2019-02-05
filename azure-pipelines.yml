@@ -14,18 +14,16 @@ steps:
 - task: Npm@1
   displayName: 'Install application dependencies'
   inputs:
-    command: custom
+    command: install
     workingDir: Application
     verbose: false
-    customCommand: ci
 
 - task: Npm@1
   displayName: 'Install test dependencies'
   inputs:
-    command: custom
+    command: install
     workingDir: Tests
     verbose: false
-    customCommand: ci
 
 - task: Npm@1
   displayName: 'Run unit tests'
