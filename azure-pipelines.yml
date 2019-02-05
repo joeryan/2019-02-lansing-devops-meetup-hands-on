@@ -33,6 +33,14 @@ steps:
     verbose: false
     customCommand: 'run unittest:report'
 
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml' 
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    failTaskOnFailedTests: true
+    testRunTitle: Unit Tests
+
 - task: ArchiveFiles@2
   displayName: 'Archive application'
   inputs:
